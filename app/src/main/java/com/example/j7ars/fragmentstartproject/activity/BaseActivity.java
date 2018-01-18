@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.example.j7ars.fragmentstartproject.fragment.BaseContentFragment;
 import com.example.j7ars.fragmentstartproject.fragment.BaseFragment;
@@ -118,10 +119,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             List<Fragment> fragList = fm.getFragments();
             if (fragList != null && fragList.size() > 0) {
                 for (Fragment frag : fragList) {
-                    if (frag == null) {
-                        continue;
-                    }
                     if (fm.getBackStackEntryCount() > 0) {
+                        if (frag == null) {
+                            continue;
+                        }
                         if (frag.isVisible()) {
                             if (frag instanceof BaseFragment) {
                                 ((BaseFragment) frag).onBackPressed();
@@ -135,8 +136,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                             return true;
                         }
                     }
-                    if (onBackPressed(frag.getChildFragmentManager())) {
-                        return true;
+                    if(frag.isVisible()) {
+                        if (onBackPressed(frag.getChildFragmentManager())) {
+                            return true;
+                        }
                     }
                 }
             } else {

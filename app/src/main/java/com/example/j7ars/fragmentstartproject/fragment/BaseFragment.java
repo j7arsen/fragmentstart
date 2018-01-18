@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import com.example.j7ars.fragmentstartproject.activity.BaseActivity;
 import com.example.j7ars.fragmentstartproject.activity.BaseContainerActivity;
@@ -140,6 +141,7 @@ public abstract class BaseFragment extends Fragment implements IFragmentResultCa
     }
 
     public void popBackStackFragment(String tag) {
+        Log.i("TAG", "TAG = " + tag);
         if (tag != null) {
             getParentFragment().getChildFragmentManager().popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         } else {
