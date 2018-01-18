@@ -48,8 +48,8 @@ public class TestFragment3 extends BaseContentFragment {
 
     @Override
     public void onBackPressed() {
-        setResult(2001, new Pair("TestTestTest"));
         popBackStackFragment(getFragmentTag());
+        setResult(2001, new Pair("TestTestTest"));
     }
 
     @Override
