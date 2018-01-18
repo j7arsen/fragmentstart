@@ -18,18 +18,16 @@ import com.example.j7ars.fragmentstartproject.fragment.BaseContentFragment;
 
 public class TestFragment3 extends BaseContentFragment {
 
+    private View mToolbar;
     private Button mBtnNext;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_test3, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_test3, container, false);
         mBtnNext = (Button) view.findViewById(R.id.btn_next);
+        mToolbar = (View) view.findViewById(R.id.navigation_bar);
+        return view;
     }
 
     @Override
@@ -43,9 +41,15 @@ public class TestFragment3 extends BaseContentFragment {
             @Override
             public void onClick(View view) {
                 setResult(2001, new Pair("TestTestTest"));
-                mActivity.popBackStackFragment(getFragmentTag());
+                popBackStackFragment(getFragmentTag());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(2001, new Pair("TestTestTest"));
+        popBackStackFragment(getFragmentTag());
     }
 
     @Override
@@ -60,6 +64,7 @@ public class TestFragment3 extends BaseContentFragment {
 
     @Override
     public void initToolbar() {
-        return;
+        initDefaultBackToolbar(mToolbar);
+        setTitle("Test3");
     }
 }

@@ -2,14 +2,18 @@ package com.example.j7ars.fragmentstartproject;
 
 import android.os.Bundle;
 
-import com.example.j7ars.fragmentstartproject.activity.BaseContainerActivity;
+import com.example.j7ars.fragmentstartproject.fragment.BaseContainerFragment;
 import com.example.j7ars.fragmentstartproject.fragment.FragmentIntent;
 
-public class MainActivity extends BaseContainerActivity {
+/**
+ * Created by maxmobiles on 18.01.2018.
+ */
+
+public class TestContainerFragment extends BaseContainerFragment {
 
     @Override
     public void openContent() {
-        openContentScreen(TestContainerFragment.class, TestContainerFragment.class.getName());
+        openContentScreen(TestFragment1.class, TestFragment1.class.getName());
     }
 
     public void openTest2Screen(String testData, FragmentIntent fragmentIntent){
@@ -20,6 +24,11 @@ public class MainActivity extends BaseContainerActivity {
 
     public void openTest3Screen(FragmentIntent fragmentIntent){
         openScreen(TestFragment3.class, TestFragment3.class.getName(), true, fragmentIntent);
+    }
+
+    @Override
+    public String getFragmentTag() {
+        return TestContainerFragment.class.getName();
     }
 
 }

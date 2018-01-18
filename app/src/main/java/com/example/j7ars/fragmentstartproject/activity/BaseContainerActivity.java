@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import com.example.j7ars.fragmentstartproject.R;
 import com.example.j7ars.fragmentstartproject.dataclasses.Animation;
 import com.example.j7ars.fragmentstartproject.fragment.BaseContentFragment;
-import com.example.j7ars.fragmentstartproject.fragment.BaseFragment;
 import com.example.j7ars.fragmentstartproject.fragment.FragmentIntent;
 
 /**
@@ -120,14 +119,5 @@ public abstract class BaseContainerActivity extends BaseActivity {
         } else {
             return getCurrentFragmentTransaction();
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        Fragment fragment = getCurrentFragment();
-        if(fragment instanceof BaseContentFragment){
-            ((BaseContentFragment) fragment).onBackPressed();
-        }
-        super.onBackPressed();
     }
 }

@@ -59,8 +59,11 @@ public class TestFragment2 extends BaseContentFragment {
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mActivity instanceof MainActivity) {
+                /*if (mActivity instanceof MainActivity) {
                     ((MainActivity) mActivity).openTest3Screen(new FragmentIntent(2000, TestFragment2.this));
+                }*/
+                if(getParentFragment() instanceof TestContainerFragment){
+                    ((TestContainerFragment) getParentFragment()).openTest3Screen(new FragmentIntent(2000, TestFragment2.this));
                 }
             }
         });
@@ -72,7 +75,7 @@ public class TestFragment2 extends BaseContentFragment {
             case 2000:
                 if(resultCode == 2001){
                     setResult(1001, data);
-                    mActivity.popBackStackFragment(getFragmentTag());
+                    popBackStackFragment(getFragmentTag());
                 }
                 break;
         }
@@ -95,8 +98,4 @@ public class TestFragment2 extends BaseContentFragment {
         setTitle("Test2");
     }
 
-    @Override
-    public void onBackPressed() {
-        Log.i("On Back Pressed", "On Back Pressed");
-    }
 }

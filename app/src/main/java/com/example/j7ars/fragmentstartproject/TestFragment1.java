@@ -41,8 +41,11 @@ public class TestFragment1 extends BaseContentFragment {
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mActivity instanceof MainActivity) {
+                /*if (mActivity instanceof MainActivity) {
                     ((MainActivity) mActivity).openTest2Screen("Test Data", new FragmentIntent(1000, TestFragment1.this));
+                }*/
+                if(getParentFragment() instanceof TestContainerFragment){
+                    ((TestContainerFragment) getParentFragment()).openTest2Screen("Test Data", new FragmentIntent(1000, TestFragment1.this));
                 }
             }
         });

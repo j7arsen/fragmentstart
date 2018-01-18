@@ -62,10 +62,6 @@ public abstract class BaseContentFragment extends BaseFragment {
         }
     }
 
-    public void onBackPressed() {
-        return;
-    }
-
     public abstract Animation getUIAnimation();
 
     public abstract void initToolbar();

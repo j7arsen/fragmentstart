@@ -3,12 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/navigation_bar"
+        layout="@layout/include_toolbar" />
+
     <Button
         android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="25sp"
-        android:text="Test3"/>
+        android:text="Test3"
+        android:layout_below="@id/navigation_bar"/>
 
 </RelativeLayout>
