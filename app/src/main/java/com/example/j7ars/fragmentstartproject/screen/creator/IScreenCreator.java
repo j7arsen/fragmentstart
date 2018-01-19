@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.example.j7ars.fragmentstartproject.fragment.FragmentIntent;
+import com.example.j7ars.fragmentstartproject.fragment.IFragmentResultCallBack;
 
 /**
  * Created by j7ars on 18.01.2018.
@@ -32,8 +32,8 @@ public interface IScreenCreator {
 
     <T extends Fragment> T newInstance(Class<T> mClass, Bundle bundle);
 
-    <T extends Fragment> T newInstance(Class<T> mClass, FragmentIntent fragmentIntent);
+    <T extends Fragment> T newInstance(Class<T> mClass, IFragmentResultCallBack iFragmentResultCallBack, int requestCode);
 
-    <T extends Fragment> T newInstance(Class<T> mClass, Bundle bundle, FragmentIntent fragmentIntent);
+    <T extends Fragment> T newInstance(Class<T> mClass, Bundle bundle, IFragmentResultCallBack iFragmentResultCallBack, int requestCode);
 
 }

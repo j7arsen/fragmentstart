@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.example.j7ars.fragmentstartproject.fragment.BaseFragment;
-import com.example.j7ars.fragmentstartproject.fragment.FragmentIntent;
+import com.example.j7ars.fragmentstartproject.fragment.IFragmentResultCallBack;
 
 /**
  * Created by j7ars on 18.01.2018.
@@ -114,17 +114,17 @@ public class ScreenCreator implements IScreenCreator {
     }
 
     @Override
-    public <T extends Fragment> T newInstance(Class<T> mClass, FragmentIntent fragmentIntent) {
-        return newInstance(mClass, null, fragmentIntent);
+    public <T extends Fragment> T newInstance(Class<T> mClass, IFragmentResultCallBack iFragmentResultCallBack, int requestCode) {
+        return newInstance(mClass, null, iFragmentResultCallBack, requestCode);
     }
 
     @Override
-    public <T extends Fragment> T newInstance(Class<T> mClass, Bundle bundle, FragmentIntent fragmentIntent) {
+    public <T extends Fragment> T newInstance(Class<T> mClass, Bundle bundle, IFragmentResultCallBack iFragmentResultCallBack, int requestCode) {
         try {
             T instance = mClass.newInstance();
-            if(fragmentIntent != null) {
+            if(iFragmentResultCallBack != null) {
                 if (instance instanceof BaseFragment) {
-                    ((BaseFragment) instance).setFragmentIntent(fragmentIntent);
+                    ((BaseFragment) instance).setFragmentResultCallback(iFragmentResultCallBack, requestCode);
                 }
             }
             if(bundle != null) {

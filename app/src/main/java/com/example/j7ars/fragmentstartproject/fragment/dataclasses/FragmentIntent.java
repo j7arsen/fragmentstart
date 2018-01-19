@@ -1,4 +1,6 @@
-package com.example.j7ars.fragmentstartproject.fragment;
+package com.example.j7ars.fragmentstartproject.fragment.dataclasses;
+
+import com.example.j7ars.fragmentstartproject.fragment.IFragmentResultCallBack;
 
 import java.io.Serializable;
 

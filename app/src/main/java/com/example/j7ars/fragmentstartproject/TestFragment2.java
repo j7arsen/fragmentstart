@@ -2,7 +2,6 @@ package com.example.j7ars.fragmentstartproject;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import com.example.j7ars.fragmentstartproject.dataclasses.Animation;
 import com.example.j7ars.fragmentstartproject.dataclasses.Pair;
 import com.example.j7ars.fragmentstartproject.dataclasses.SlideAnimation;
 import com.example.j7ars.fragmentstartproject.fragment.BaseContentFragment;
-import com.example.j7ars.fragmentstartproject.fragment.FragmentIntent;
+import com.example.j7ars.fragmentstartproject.fragment.dataclasses.FragmentIntent;
 
 /**
  * Created by j7ars on 18.01.2018.

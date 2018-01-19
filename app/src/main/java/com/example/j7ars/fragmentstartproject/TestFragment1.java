@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.example.j7ars.fragmentstartproject.dataclasses.Animation;
 import com.example.j7ars.fragmentstartproject.dataclasses.Pair;
 import com.example.j7ars.fragmentstartproject.fragment.BaseContentFragment;
-import com.example.j7ars.fragmentstartproject.fragment.FragmentIntent;
+import com.example.j7ars.fragmentstartproject.fragment.dataclasses.FragmentIntent;
 
 /**
  * Created by j7ars on 18.01.2018.

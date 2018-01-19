@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import com.example.j7ars.fragmentstartproject.activity.BaseActivity;
-import com.example.j7ars.fragmentstartproject.activity.BaseContainerActivity;
+import com.example.j7ars.fragmentstartproject.activity.BaseContentContainerActivity;
 import com.example.j7ars.fragmentstartproject.dataclasses.Pair;
 import com.example.j7ars.fragmentstartproject.screen.creator.ScreenCreator;
 
@@ -21,16 +21,18 @@ import com.example.j7ars.fragmentstartproject.screen.creator.ScreenCreator;
 
 public abstract class BaseFragment extends Fragment implements IFragmentResultCallBack {
 
-    private static final String SAVE_FRAGMENT_INTENT = "BaseFragment.SAVE_FRAGMENT_INTENT";
+    private static final String SAVE_FRAGMENT_RESULT_CALLBACK = "BaseFragment.SAVE_FRAGMENT_RESULT_CALLBACK";
+    private static final String SAVE_REQUEST_CODE = "BaseFragment.SAVE_REQUEST_CODE";
 
-    protected FragmentIntent mFragmentIntent;
+    protected IFragmentResultCallBack mFragmentResultCallback;
+    protected int mRequestCode;
 
     protected BaseActivity mActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof BaseContainerActivity) {
+        if (context instanceof BaseContentContainerActivity) {
             mActivity = (BaseActivity) context;
         }
     }
@@ -38,26 +40,29 @@ public abstract class BaseFragment extends Fragment implements IFragmentResultCa
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof BaseContainerActivity) {
+        if (activity instanceof BaseContentContainerActivity) {
             mActivity = (BaseActivity) activity;
         }
     }
 
-    public void setFragmentIntent(FragmentIntent mFragmentIntent) {
-        this.mFragmentIntent = mFragmentIntent;
+    public void setFragmentResultCallback(IFragmentResultCallBack iFragmentResultCallBack, int requestCode) {
+        this.mFragmentResultCallback = iFragmentResultCallBack;
+        this.mRequestCode = requestCode;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            mFragmentIntent = (FragmentIntent) savedInstanceState.getSerializable(SAVE_FRAGMENT_INTENT);
+            mFragmentResultCallback = (IFragmentResultCallBack) savedInstanceState.getSerializable(SAVE_FRAGMENT_RESULT_CALLBACK);
+            mRequestCode = savedInstanceState.getInt(SAVE_REQUEST_CODE);
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(SAVE_FRAGMENT_INTENT, mFragmentIntent);
+        outState.putSerializable(SAVE_FRAGMENT_RESULT_CALLBACK, mFragmentResultCallback);
+        outState.putInt(SAVE_REQUEST_CODE, mRequestCode);
         super.onSaveInstanceState(outState);
     }
 
@@ -68,14 +73,14 @@ public abstract class BaseFragment extends Fragment implements IFragmentResultCa
     public abstract String getFragmentTag();
 
     public void setResult(int resultCode) {
-        if (mFragmentIntent != null && mFragmentIntent.getFragmentResultCallBack() != null) {
-            mFragmentIntent.getFragmentResultCallBack().onFragmentResult(mFragmentIntent.getRequestCode(), resultCode, null);
+        if (mFragmentResultCallback != null) {
+            mFragmentResultCallback.onFragmentResult(mRequestCode, resultCode, null);
         }
     }
 
     public void setResult(int resultCode, Pair data) {
-        if (mFragmentIntent != null && mFragmentIntent.getFragmentResultCallBack() != null) {
-            mFragmentIntent.getFragmentResultCallBack().onFragmentResult(mFragmentIntent.getRequestCode(), resultCode, data);
+        if (mFragmentResultCallback != null) {
+            mFragmentResultCallback.onFragmentResult(mRequestCode, resultCode, data);
         }
     }
 
@@ -158,11 +163,7 @@ public abstract class BaseFragment extends Fragment implements IFragmentResultCa
     }
 
     public void onBackPressed() {
-        if(getParentFragment() != null){
-            popBackStackFragment(getFragmentTag());
-        } else{
-            mActivity.popBackStackFragment(getFragmentTag());
-        }
+        return;
     }
 
 }

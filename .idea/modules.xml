@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FragmentStartProject.iml" filepath="$PROJECT_DIR$/FragmentStartProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fragmentstart.iml" filepath="$PROJECT_DIR$/fragmentstart.iml" />
+      <module fileurl="file://C:\Projects\FragmentStartProject\fragmentstart.iml" filepath="C:\Projects\FragmentStartProject\fragmentstart.iml" />
     </modules>
   </component>
 </project>

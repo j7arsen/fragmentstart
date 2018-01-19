@@ -66,4 +66,13 @@ public abstract class BaseContentFragment extends BaseFragment {
 
     public abstract void initToolbar();
 
+    @Override
+    public void onBackPressed() {
+        if(getParentFragment() != null){
+            popBackStackFragment(getFragmentTag());
+        } else{
+            mActivity.popBackStackFragment(getFragmentTag());
+        }
+    }
+
 }
